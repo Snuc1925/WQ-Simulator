@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package wq.proto;
+
+option java_package = "com.wq.simulator.proto";
+option java_outer_classname = "AlphaSignalsProto";
+
+// Alpha signal from a single strategy
+message AlphaSignal {
+    string alpha_id = 1;
+    string symbol = 2;
+    double signal = 3;        // -1.0 to +1.0
+    double confidence = 4;    // 0.0 to 1.0
+    int64 timestamp_ns = 5;
+}
+
+// Aggregated signals
+message AggregatedSignals {
+    repeated AlphaSignal signals = 1;
+}
+
+service AlphaSignalService {
+    rpc StreamSignals(SignalRequest) returns (stream AlphaSignal);
+    rpc SubmitSignal(AlphaSignal) returns (SignalAck);
+}
+
+message SignalRequest {
+    repeated string alpha_ids = 1;
+}
+
+message SignalAck {
+    bool success = 1;
+    string message = 2;
+}

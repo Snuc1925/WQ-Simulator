@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package wq.proto;
+
+option java_package = "com.wq.simulator.proto";
+option java_outer_classname = "MarketDataProto";
+
+// Market data tick
+message MarketTick {
+    string symbol = 1;
+    double bid_price = 2;
+    double ask_price = 3;
+    double last_price = 4;
+    int64 bid_size = 5;
+    int64 ask_size = 6;
+    int64 volume = 7;
+    int64 timestamp_ns = 8;
+    string exchange = 9;
+}
+
+// Stream of market data
+message MarketDataStream {
+    repeated MarketTick ticks = 1;
+}
+
+service MarketDataService {
+    rpc StreamMarketData(MarketDataRequest) returns (stream MarketTick);
+}
+
+message MarketDataRequest {
+    repeated string symbols = 1;
+}

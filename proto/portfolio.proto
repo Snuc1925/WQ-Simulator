@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package wq.proto;
+
+option java_package = "com.wq.simulator.proto";
+option java_outer_classname = "PortfolioProto";
+
+// Target portfolio position
+message TargetPosition {
+    string symbol = 1;
+    double target_quantity = 2;
+    double current_quantity = 3;
+    int64 timestamp_ns = 4;
+}
+
+// Complete target portfolio
+message TargetPortfolio {
+    repeated TargetPosition positions = 1;
+    int64 timestamp_ns = 2;
+}
+
+service PortfolioService {
+    rpc GetTargetPortfolio(PortfolioRequest) returns (TargetPortfolio);
+    rpc StreamTargetPortfolio(PortfolioRequest) returns (stream TargetPortfolio);
+}
+
+message PortfolioRequest {
+    string portfolio_id = 1;
+}

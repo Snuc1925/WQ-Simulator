@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package wq.proto;
+
+option java_package = "com.wq.simulator.proto";
+option java_outer_classname = "RiskProto";
+
+// Order to be validated
+message OrderRequest {
+    string order_id = 1;
+    string symbol = 2;
+    double quantity = 3;
+    string side = 4;  // BUY or SELL
+    double price = 5;
+    int64 timestamp_ns = 6;
+}
+
+// Risk check result
+message RiskCheckResult {
+    bool approved = 1;
+    string reason = 2;
+    repeated string violations = 3;
+}
+
+service RiskService {
+    rpc ValidateOrder(OrderRequest) returns (RiskCheckResult);
+}
