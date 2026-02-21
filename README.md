@@ -70,9 +70,20 @@ WQ-Simulator/
 │   ├── signal-aggregator/     # C++ - Signal combination
 │   ├── risk-guardian/         # C++ - Risk management
 │   └── ems-java/              # Java - Order execution
+├── docs/
+│   ├── USE_CASES.md           # Detailed use case descriptions (all 20 use cases)
+│   ├── ARCHITECTURE.md        # Architecture overview
+│   └── ...
 ├── CMakeLists.txt             # Root build configuration
 └── README.md
 ```
+
+## Documentation
+
+- [`docs/USE_CASES.md`](docs/USE_CASES.md) — **Detailed use case descriptions** for all 20 use cases, including step-by-step flows, input/output data types, error handling, and performance notes. Written to be understandable without a finance or trading background.
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — Architecture overview and service interaction diagrams
+- [`docs/SYSTEM_FLOW.md`](docs/SYSTEM_FLOW.md) — End-to-end data flow diagrams
+- [`docs/QUICKSTART.md`](docs/QUICKSTART.md) — Build and run instructions
 
 ## License
 
